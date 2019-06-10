@@ -11,3 +11,6 @@ CTestTestfile.cmake
 build
 *.lib
 *.dll
+*.a
+*.dylib
+*.so
