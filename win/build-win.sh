@@ -1,22 +1,21 @@
 #!/bin/bash
 set -e
-root=$(pwd)
+cd ${0%/*}
+SCRIPT_DIR=$(pwd)
 
 # clean
-rm -rf build libuv-win*
+rm -rf build x86 x64
 
 function build() {
     cmake --build "build/${ARCH}" --config "Release"
 
     # static library
-    mv build/${ARCH}/Release/uv_a.lib   libuv-win-${ARCH}.lib
+    dist=${SCRIPT_DIR}/${ARCH}/static
+    mkdir -p ${dist}
+    mv build/${ARCH}/Release/uv_a.lib  ${dist}/uv.lib
 
-    # shared library (DLL)
-    DLL_DIR="libuv-win-${ARCH}-dll"
-    mv build/${ARCH}/Release/   ${DLL_DIR}
-
-    # pack DLL folder (choco install zip)
-    zip -r ${DLL_DIR}.zip       ${DLL_DIR}
+    # shared library
+    mv build/${ARCH}/Release/  ${SCRIPT_DIR}/${ARCH}/shared
 }
 
 # 1. cmake build x86

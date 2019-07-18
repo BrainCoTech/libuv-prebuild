@@ -1,5 +1,9 @@
 #!/bin/bash
 set -e
+cd ${0%/*}
+SCRIPT_DIR=$(pwd)
+
+ARCH="x64"
 
 # create new build folder
 rm -rf build
@@ -7,10 +11,14 @@ mkdir build
 cd build
 
 # cmake build
-cmake .. -A"x64"
+cmake .. -A"${ARCH}"
 cmake --build .
 
-# run test
+# run test_static
 cd Debug
-./win_static.exe
-./win_shared.exe
+echo -e "\n[win] test ${ARCH} static library"
+./test_static.exe
+
+# run test_shared
+echo -e "\n[win] test ${ARCH} shared library"
+PATH="${PATH}:${SCRIPT_DIR}/../${ARCH}/shared" ./test_shared.exe

@@ -16,3 +16,5 @@ build
 *.so
 *.exp
 *.zip
+win/x86
+win/x64
