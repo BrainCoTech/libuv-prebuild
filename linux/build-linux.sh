@@ -13,7 +13,12 @@ if [ "$platform" != "Linux" ]; then
 fi
 
 # cmake build
-cmake -H../libuv -B"build"
+cmake -H../libuv -B"build" \
+    -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE
+    # https://github.com/BrainCoTech/libuv-prebuild/issues/1
+    # https://mropert.github.io/2018/02/02/pic_pie_sanitizers/
+    # https://gitlab.kitware.com/cmake/cmake/issues/14983#note_363197
+
 cmake --build "build" --config "Release"
 
 # copy static and shared libraries
