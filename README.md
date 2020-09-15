@@ -3,7 +3,7 @@ Libuv prebuild.
 
 This libraries automatically builds and tests [libuv](https://github.com/libuv/libuv/commit/cc506dd97c7348abb54ef5c51eb563e1b512b45f)
 
-Pre-built libraries are provided in the release.
+Pre-built libraries are provided in [release 1.38.1](https://github.com/BrainCoTech/libuv-prebuild/releases/tag/v1.38.1).
 
 ## Includes libraries for multiple platforms
 * Android (arm64, armeabi-v7a, armeabi-v7a-neon, x86, x64)
@@ -11,6 +11,7 @@ Pre-built libraries are provided in the release.
 * Windows (x86, x64)
 * Windows (x86, x64)
 * Linux   (x86, x64)
+
 
 # Usage:
 
