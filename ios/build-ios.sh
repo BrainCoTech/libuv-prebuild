@@ -11,18 +11,19 @@ if [ "$platform" != "Darwin" ]; then
     exit 1
 fi
 
-# cmake build    #armv7;armv7s;
+# cmake build  armv7;armv7s;
 cmake -S ../libuv -B "build" -G "Xcode" \
     -DCMAKE_SYSTEM_NAME="iOS" \
     -DCMAKE_OSX_ARCHITECTURES="arm64;arm64e;x86_64" \
-    -DCMAKE_OSX_DEPLOYMENT_TARGET="12.5"  -DCMAKE_XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH="NO" \
+    -DCMAKE_OSX_DEPLOYMENT_TARGET="12.5" \
+    -DCMAKE_XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH="NO" \
     -DCMAKE_INSTALL_PREFIX="$(pwd)/build" \
     -DCMAKE_IOS_INSTALL_COMBINED="YES"
 
 cmake --build "build" --config "Release" --target "install" \
       -- ALWAYS_SEARCH_USER_PATHS="NO"       \
          BITCODE_GENERATION_MODE="bitcode"   \
-         OTHER_CFLAGS="-fembed-bitcode"
+         OTHER_CFLAGS="-fembed-bitcode" -allowProvisioningUpdates 
 
 # armv7  (Debug: 1.9MB / Release: 692KB)
 # armv7s (Debug: 1.9MB / Release: 693KB)
