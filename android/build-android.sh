@@ -21,7 +21,7 @@ fi
 
 # use cmake and ninja from Android SDK
 root=$(pwd)
-cd ${ANDROID_HOME}/cmake/3.10.*/bin/
+cd ${ANDROID_HOME}/cmake/3.18.*/bin/
 CMAKE=$(pwd)/cmake
 NINJA=$(pwd)/ninja
 
