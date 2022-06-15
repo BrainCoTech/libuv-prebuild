@@ -11,11 +11,11 @@ if [ "$platform" != "Darwin" ]; then
     exit 1
 fi
 
-# cmake build
+# cmake build    #armv7;armv7s;
 cmake -S ../libuv -B "build" -G "Xcode" \
     -DCMAKE_SYSTEM_NAME="iOS" \
-    -DCMAKE_OSX_ARCHITECTURES="armv7;armv7s;arm64;arm64e;i386;x86_64" \
-    -DCMAKE_OSX_DEPLOYMENT_TARGET="9.3" \
+    -DCMAKE_OSX_ARCHITECTURES="arm64;arm64e;x86_64" \
+    -DCMAKE_OSX_DEPLOYMENT_TARGET="12.5" \ 
     -DCMAKE_XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH="NO" \
     -DCMAKE_INSTALL_PREFIX="$(pwd)/build" \
     -DCMAKE_IOS_INSTALL_COMBINED="YES"
@@ -31,7 +31,7 @@ cmake --build "build" --config "Release" --target "install" \
 # arm64e (Debug: 2.0MB / Release: 769KB)
 # i386   (Debug: 794KB / Release: 210KB)
 # x86_64 (Debug: 800KB / Release: 223KB)
-ARCHS="armv7 armv7s arm64 arm64e i386 x86_64"
+ARCHS="arm64 arm64e x86_64"   # armv7 armv7s  i386 
 for ARCH in ${ARCHS}
 do
     lipo -thin ${ARCH} build/lib/libuv_a.a -output "libuv-ios-${ARCH}.a"
