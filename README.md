@@ -8,8 +8,7 @@ Pre-built libraries are provided in [Release 1.44.1](https://github.com/BrainCoT
 ## Includes libraries for multiple platforms
 * Android (arm64, armeabi-v7a, armeabi-v7a-neon, x86, x64)
 * iOS     (armv7, arm64, arm64e)
-* Windows (x86, x64)
-* Windows (x86, x64)
+* Windows (x86, x64) Use git bash
 * Linux   (x86, x64)
 
 
